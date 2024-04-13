@@ -6,7 +6,8 @@ There are many M5Stack devices. The M5Dial is taken as an example for analysis
 1. [uiflow-micropython](https://github.com/m5stack/uiflow-micropython)
 2. Device, for example dial, core, core2 and so on.
 3. VScode
-4. Git 
+4. Thonny
+5. Git 
 
 ## Program loading flow 
 
@@ -22,13 +23,13 @@ There are many M5Stack devices. The M5Dial is taken as an example for analysis
 
 ### boot.py
 
-*** The file location is in the root directory of the device. ***
-
 ```python
+
+# import startup class and call it
 from startup import startup 
 startup(boot_option, NETWORK_TIMEOUT)
-```
 
+```
 ### class startup
 
 ```python
@@ -176,5 +177,34 @@ Three important methods of APP Class:
 on_ready
 on_run
 on_view
+```
+
+## File location
+
+### in Fireware  :
+
+(Take m5dial as an example, for other devices just change folder dial to device name. )
+
+```
+boot.py --  "uiflow-micropython\m5stack\fs\user\boot.py"
+class startup -- "uiflow-micropython\m5stack\modules\startup\__init__.py"
+class Dial_Startup -- "uiflow-micropython\m5stack\modules\startup\__init__.py"
+class Framework -- "uiflow-micropython\m5stack\modules\startup\dial\framework.py"
+class apps -- "uiflow-micropython\m5stack\modules\startup\dial\apps\*"
+class App -- "uiflow-micropython\m5stack\modules\startup\dial\app.py"
+```
+
+### in Device:
+
+```
+boot.py --  "root folder"
+class startup -- "from startup import Startup"
+class Dial_Startup -- "from startup.dial import Dial_Startup"
+class Framework -- "from startup.dial.framework import Framework"
+class apps -- "from startup.dial.apps.dev import DevApp"
+              "from startup.dial.apps.app_run import RunApp"
+              "from startup.dial.apps.settings import SettingsApp, WiFiSetting"
+              etc.
+class App -- "uiflow-micropython\m5stack\modules\startup\dial\app.py"
 ```
 
