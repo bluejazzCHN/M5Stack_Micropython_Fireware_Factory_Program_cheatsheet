@@ -11,7 +11,7 @@ There are many M5Stack devices. The M5Dial is taken as an example for analysis
 ## Program loading flow 
 
 ```
-    boot.py --> class Startup (startup function) --> class Dial_Startup --> class Framework (install and start function)
+    boot.py --> class Startup (startup function) --> class Dial_Startup (Startup function) --> class Framework (install and start function)
                                                             |                        |
                                                             |                        |
                                                             |                        |   
@@ -30,6 +30,17 @@ startup(boot_option, NETWORK_TIMEOUT)
 ### class startup
 
 ```python
+
+#Load the Startup class of each device based on the board.id. for M5Dial this class is Dial_Startup.
+
+elif board_id == M5.BOARD.M5Dial:
+    from .dial import Dial_Startup    
+    dial = Dial_Startup()
+
+    # call dial class startup function
+
+    dial.startup(ssid, pswd, timeout)
+
 ```
 
 ### class Dial_Startup
@@ -68,6 +79,16 @@ fw.start()
 
 ### class Framework
 ### class apps
+```
+The following is the official implementation of the M5 sample app:
+DevApp --dev.py,
+RunApp --app_run.py,
+ListApp --app_list.py,
+SettingsApp --settings.py,
+EzDataApp --ezdata.py,
+StatusBarApp --status_bar.py,
+WiFiSetting --settings.py
+```
 ### class App
  
 
