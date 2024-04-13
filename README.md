@@ -12,8 +12,8 @@ There are many M5Stack devices. The M5Dial is taken as an example for analysis
 
 ```
     boot.py --> class Startup (startup function) --> class Framework (install and start function)
-                        |              |
-                        |              |
-                        |              |   
-                        |-------> class apps <-- class app ( base is derived)
+                        |                                     |
+                        |                                     |
+                        |                                     |   
+                        |--------------------------> class apps <-- class app ( base is derived)
 ```
