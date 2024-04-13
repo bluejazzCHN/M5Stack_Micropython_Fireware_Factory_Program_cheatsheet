@@ -11,16 +11,28 @@ There are many M5Stack devices. The M5Dial is taken as an example for analysis
 ## Program loading flow 
 
 ```
-    boot.py --> class Startup (startup function) --> class Framework (install and start function)
-                        |                                     |
-                        |                                     |
-                        |                                     |   
-                        |--------------------------> class apps <-- class app ( base is derived)
+    boot.py --> class Startup (startup function) --> class Dial_Startup --> class Framework (install and start function)
+                                                            |                        |
+                                                            |                        |
+                                                            |                        |   
+                                                            |-----------------> class apps <-- class app ( base is derived)
 ```
 
 ## Flow description
 
 ### boot.py
+
+```python
+from startup import startup 
+startup(boot_option, NETWORK_TIMEOUT)
+```
+
+### class startup
+
+```python
+```
+
+### class Dial_Startup
 
 ```python
 # 1. Define the framework
@@ -41,15 +53,21 @@ run_app = RunApp(None, data=self._wlan)
 list_app = ListApp(None, data=self._wlan)
 
 #3. Install apps (one of which is the launcher)
+
 fw.install_launcher(dev_app)
 fw.install(wifi_app) fw.install(setting_app)
 fw.install(dev_app)
 fw.install(run_app)
 fw.install(list_app)
-# fw.install(ezdata_app)
-4. Launch all apps
+
+#4. Launch framework and run all apps
+
 fw.start()
 
 ```
+
+### class Framework
+### class apps
+### class App
  
 
