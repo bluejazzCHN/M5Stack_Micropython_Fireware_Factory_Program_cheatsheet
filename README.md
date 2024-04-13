@@ -21,7 +21,7 @@ There are many M5Stack devices. The M5Dial is taken as an example for analysis
 
 ## Flow description
 
-### boot.py
+#### boot.py
 
 ```python
 
@@ -30,7 +30,8 @@ from startup import startup
 startup(boot_option, NETWORK_TIMEOUT)
 
 ```
-### class startup
+
+#### class startup
 
 ```python
 
@@ -46,7 +47,7 @@ elif board_id == M5.BOARD.M5Dial:
 
 ```
 
-### class Dial_Startup
+#### class Dial_Startup
 
 ```python
 # 1. Define the framework
@@ -80,7 +81,8 @@ fw.start()
 
 ```
 
-### class Framework
+#### class Framework
+
 ```
 Three important methods of APP Class:
 install
@@ -153,7 +155,7 @@ run
             await asyncio.sleep_ms(10)
 ```
 
-### class apps
+#### class apps
 
 ```
 The following is the official implementation of the M5 sample app:
@@ -168,7 +170,7 @@ WiFiSetting --settings.py
 
 ```
 
-### class App
+#### class App
 
 ```
 App.py contains the base class of the app, class AppBase, and a function class of the app, class AppSelector
@@ -181,7 +183,7 @@ on_view
 
 ## File location
 
-### in Fireware  :
+#### in Fireware  :
 
 (Take m5dial as an example, for other devices just change folder dial to device name. )
 
@@ -194,7 +196,7 @@ class apps -- "uiflow-micropython\m5stack\modules\startup\dial\apps\*"
 class App -- "uiflow-micropython\m5stack\modules\startup\dial\app.py"
 ```
 
-### in Device:
+#### in Device:
 
 ```
 boot.py --  "root folder"
